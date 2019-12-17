@@ -1,0 +1,84 @@
+
+body{
+	background-image: url("arcade.jpg");
+	background-size: 60%;
+}
+table{
+	border-collapse: collapse;
+	border-width: 4px;
+}
+td.lit {
+	background-image: url(neonlights.jpg);
+	background-size: 100%;
+	height: 120px;
+	width: 120px;
+	color: white;
+	text-align: center;
+}
+td.unlit {
+	background-color: black;
+	height: 120px;
+	width: 120px;
+	color: white;
+	text-align: center;
+}
+td.lit:hover {
+	background-color: white;
+}
+td.unlit:hover {
+	background-color: white;
+}
+#commence {
+	width: 500px;
+	height: 300px;
+	font-size: 80px;
+	background-color: #42c2f4;
+	border-radius: 18px;
+	color: #1aff8c;
+}
+#commence:hover {
+	background-color: #0080ff;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#p01{
+	font-size: 30px;
+	color: #ff00aa;
+	border-radius: 3px;
+	width: 200px;
+	height: 70px;
+	text-align: center;
+}
+#begin {
+	background-color: black;
+	color: #00ffff;
+	width: 100px;
+	height: 50px;
+	border-color: #0000ff;
+}
+#begin:hover {
+	background-color: white;
+}
+#scoreboard {
+	background-color: black;
+	background-image: url(stitch.jpg);
+	height: 170px;
+	width: 700px;
+	color: #ffff00;
+	text-align: center;
+}
+#leaderBoard {
+	visibility: hidden; 
+	width: 700px;
+	height: 200px;
+	background-color: white;
+	
+}
+input.winner {
+	visibility: hidden;
+}
+#name {
+	visibility: hidden;
+}
+#StartAgain {
+	visibility: hidden;
+}

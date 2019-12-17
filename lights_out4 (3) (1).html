@@ -1,0 +1,427 @@
+<head>
+<link rel="stylesheet" href="style1.css">
+</head>
+
+<script>
+
+//ask Reynolds about that random space
+
+var  moves, level, cantscam, points;
+points = 22;
+moves = 0;
+level = 1;
+cantscam=0;
+
+var tag = [];
+var point = [];
+/* Example Var Level
+var level= [
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+]
+*/
+
+
+var level1= [
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 1,
+0, 0, 0, 1, 1,
+]
+var level2= [
+0, 0, 0, 0, 1,
+0, 0, 1, 1, 0,
+0, 0, 0, 1, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+]
+var level3= [
+0, 0, 0, 1, 0,
+0, 0, 0, 1, 1,
+0, 1, 1, 0, 0,
+0, 0, 1, 0, 0,
+0, 0, 0, 0, 0,
+]
+var level4= [
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+1, 1, 0, 1, 1,
+0, 0, 0, 0, 0,
+1, 1, 0, 1, 1,
+]
+var level5= [
+1, 1, 0, 1, 1,
+1, 0, 1, 0, 1,
+0, 0, 1, 1, 0,
+1, 0, 0, 0, 1,
+1, 0, 1, 1, 1,
+]
+var level6= [
+1, 1, 0, 0, 0,
+0, 0, 0, 0, 0,
+1, 1, 0, 0, 0,
+0, 0, 0, 0, 0,
+1, 1, 0, 0, 0,
+]
+var level7= [
+1, 1, 0, 1, 1,
+0, 0, 1, 0, 0,
+1, 0, 1, 0, 1,
+0, 0, 1, 0, 0,
+1, 1, 0, 1, 1,
+]
+var level8= [
+1, 0, 0, 0, 0,
+1, 0, 0, 1, 0,
+1, 1, 0, 1, 1,
+1, 0, 0, 1, 0,
+1, 0, 0, 0, 0,
+]
+var level9= [
+1, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+1, 0, 0, 0, 1,
+]
+var level10= [
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+1, 1, 1, 1, 1,
+0, 0, 0, 0, 0,
+0, 0, 0, 0, 0,
+]
+
+// Reset/Start Button
+function start(){
+document.getElementById("begin").value = "Reset";
+cantscam=1
+if(level==1){
+points=22;
+moves=0;
+for(i=0;i<level1.length;i++){
+if(level1[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==2){
+points=21;
+for(i=0;i<level2.length;i++){
+if(level2[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==3){
+points=19;
+for(i=0;i<level3.length;i++){
+if(level3[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+
+if(level==4){
+points=17;
+for(i=0;i<level5.length;i++){
+if(level4[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==5){
+points=10;
+for(i=0;i<level5.length;i++){
+if(level5[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==6){
+points=19;
+for(i=0;i<level6.length;i++){
+if(level6[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==7){
+points=12;
+for(i=0;i<level7.length;i++){
+if(level7[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==8){
+points=15;
+for(i=0;i<level8.length;i++){
+if(level8[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==9){
+points=22;
+for(i=0;i<level9.length;i++){
+if(level9[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+if(level==10){
+points=20;
+for(i=0;i<level10.length;i++){
+if(level10[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+count();
+}
+
+//Master Lighting Function
+function turnOn(x){
+if(cantscam==1){
+litOwn(x);
+litUp(x);
+litLeft(x);
+litRight(x);
+litDown(x);
+count();
+lert();
+}else{}
+}
+
+//Points & Moves Keeper
+function count(){
+document.getElementById("p01").innerHTML = "Points:" + points + "<br>" + "Moves:" + moves;
+}
+
+//Winning Function
+function lert(){
+if(level==10){
+if(points==25){
+//display winning page
+alert('Congrats! You Won the Entire Game');
+document.getElementById("SLevel").innerHTML += "<td>Level" + " " + level + "</td>";
+document.getElementById("Scores").innerHTML += "<td>" + moves + " " + "Moves</td>";
+	t.innerHTML = "Points: 22 <br> Moves: 0";
+	t.style = "background-color: black;"
+var  q = document.getElementById("p03"); x = document.getElementById("leaderBoard"); r = document.getElementById("p04"); a = document.getElementById("SLevel"); b = document.getElementById("Scores"); c = document.getElementById("scoreboard");d = document.getElementById("name"); e = document.getElementById("addsLeaders"); p = document.getElementById("p01");
+		 q.style.display = "none";
+		 p.style.display = "none";
+		 x.style.visibility = "visible";
+		 t.style.visibility = "visible";
+		 r.style.visibility = "hidden";
+		 a.style.visibility = "hidden";
+		 b.style.visibility = "hidden";
+		 c.style.visibility = "hidden";
+		 d.style.visibility = "visible";
+		 e.style.visibility = "visible";
+}
+}else{
+if(points==25){
+alert('You Won!');
+cantscam=0;
+if(level==1){
+document.getElementById("p05").innerHTML = "<table id='scoreboard'><tr id='SLevel'></tr><tr id='Scores'></tr></table>";
+document.getElementById("SLevel").innerHTML += "<td>Level" + " " + level + "</td>";
+document.getElementById("Scores").innerHTML += "<td>" + moves + " " + "Moves</td>";
+level++;
+document.getElementById("begin").value = "Start Level" + " " + level;
+}else{
+document.getElementById("SLevel").innerHTML += "<td>Level" + " " + level + "</td>";
+document.getElementById("Scores").innerHTML += "<td>" + moves + " " + "Moves</td>";
+level++;
+document.getElementById("begin").value = "Start Level" + " " + level;
+}
+}
+}
+}
+ /*
+//Adding to Leaderboard
+function addToLB(){
+	var f = document.getElementById("leaderBoard"); d = document.getElementById("name");
+	f.innerHTML += "<tr><td>" + d.value + "</td><td>"+ moves + "</td></tr>";
+	d.value = " ";
+	document.getElementById("StartAgain").style.visibility = "visible";
+	level=1;
+}
+ */
+
+
+
+function addToLB(){
+document.getElementById('leaderBoard').innerHTML = "<th>Name</th><th>Moves Used</th>";
+tag.push(document.getElementById('name').value);
+point.push(moves);
+for(i=0;i<1000;i++){
+for(j=0;j<point.length;j++){
+if(point[j]==i){
+document.getElementById('leaderBoard').innerHTML += "<tr><td>" + tag[j]+"</td><td>"+point[j]+"</tr>";
+}
+}
+}
+	document.getElementById("StartAgain").style.visibility = "visible";
+	level=1;
+}
+
+
+//Start the Game Over
+function Restart(){
+var  q = document.getElementById("p03"); x = document.getElementById("leaderBoard"); r = document.getElementById("p04"); a = document.getElementById("SLevel"); b = document.getElementById("Scores"); c = document.getElementById("scoreboard");d = document.getElementById("name"); e = document.getElementById("addsLeaders"); p = document.getElementById("p01");
+      
+		 q.style.display = "block";
+		 p.style.display = "block";
+		 x.style.visibility = "hidden";
+		 t.style.visibility = "hidden";
+		 r.style.visibility = "visible";
+		 a.style.visibility = "visible";
+		 b.style.visibility = "visible";
+		 c.style.visibility = "visible";
+		 d.style.visibility = "hidden";
+		 e.style.visibility = "hidden";
+		 document.getElementById('StartAgain').style.visibility = "hidden";
+		 
+
+document.getElementById("p01").style = "background-color: black";
+document.getElementById("p05").innerHTML = "<table id='scoreboard'><tr id='SLevel'></tr><tr id='Scores'></tr></table>";	
+document.getElementById("begin").value = "Start Level: 1";
+}
+
+//Hides literally everything until after button is pressed. AKA the complicated extra stuff
+function appear() {
+   var  q = document.getElementById("p03"); r = document.getElementById("p04"); s = document.getElementById("commences"); t = document.getElementById("p01"); v = document.getElementById("p05");
+   cantscam=1;
+		q.innerHTML = "<table id='game' border=1><tr><td class='unlit' id=1 onClick='turnOn(this.id)'>1</td><td class='unlit' id=2 onClick='turnOn(this.id)'>2</td><td class='unlit' id=3 onClick='turnOn(this.id)'>3</td><td class='unlit' id=4 onClick='turnOn(this.id)'>4</td><td class='unlit' id=5 onClick='turnOn(this.id)'>5</td></tr><tr><td class='unlit' id=6 onClick='turnOn(this.id)'>6</td><td class='unlit' id=7 onClick='turnOn(this.id)'>7</td><td class='unlit' id=8 onClick='turnOn(this.id)'>8</td><td class='unlit' id=9 onClick='turnOn(this.id)'>9</td><td class='unlit' id=10 onClick='turnOn(this.id)'>10</td></tr><tr><td class='unlit' id=11 onClick='turnOn(this.id)'>11</td><td class='unlit' id=12 onClick='turnOn(this.id)'>12</td><td class='unlit' id=13 onClick='turnOn(this.id)'>13</td><td class='unlit' id=14 onClick='turnOn(this.id)'>14</td><td class='unlit' id=15 onClick='turnOn(this.id)'>15</td></tr><tr><td class='unlit' id=16 onClick='turnOn(this.id)'>16</td><td class='unlit' id=17 onClick='turnOn(this.id)'>17</td><td class='unlit' id=18 onClick='turnOn(this.id)'>18</td><td class='unlit' id=19 onClick='turnOn(this.id)'>19</td><td class='unlit' id=20 onClick='turnOn(this.id)'>20</td></tr><tr><td class='unlit' id=21 onClick='turnOn(this.id)'>21</td><td class='unlit' id=22 onClick='turnOn(this.id)'>22</td><td class='unlit' id=23 onClick='turnOn(this.id)'>23</td><td class='unlit' id=24 onClick='turnOn(this.id)'>24</td><td class='unlit' id=25 onClick='turnOn(this.id)'>25</td></tr></table>";
+	r.innerHTML = "<input type='button' id='begin' value='Reset' onClick='start()'>";
+	document.getElementById("commences").innerHTML = "";
+	t.innerHTML = "Points: 22 <br> Moves: 0";
+	t.style = "background-color: black;"
+	if(level==1){
+points=22;
+moves=0;
+for(i=0;i<level1.length;i++){
+if(level1[i]==1){
+document.getElementById(i+1).className="lit";
+}else{
+document.getElementById(i+1).className="unlit";}
+}
+}
+}
+
+//Suprisingly the Basic stuff
+
+//lighting self
+function litOwn(x) {
+y = document.getElementById(x);
+if(y.className =="lit"){
+y.className = "unlit";
+points++;
+}else{
+y.className = "lit";
+points--;
+}
+moves++;
+}
+
+//lighting downwards
+function litDown (x) {
+if (x == "21" || x=="22" || x=="23" || x=="24" || x=="25"){
+}else{
+c = document.getElementById(eval(x)+5);
+if(c.className=="lit"){
+c.className = "unlit";
+points++;
+}else{
+c.className = "lit";
+points--;
+}
+}
+
+}
+
+//lighting upwards
+function litUp (x) {
+if (x == "1" || x=="2" || x=="3" || x=="4" || x=="5"){
+}else{
+b = document.getElementById(eval(x)-5);
+if(b.className=="lit"){
+b.className = "unlit";
+points++;
+}else{
+b.className = "lit";
+points--;
+}
+}
+}
+
+//lighting the left
+function litLeft (x) {
+if (x == "1" || x=="6" || x=="11" || x=="16" || x=="21"){
+}else{
+a = document.getElementById(eval(x)-1);
+if(a.className=="lit"){
+a.className = "unlit";
+points++;
+}else{
+a.className = "lit";
+points--;
+}
+}
+}
+
+//lighting the right
+function litRight (x) {
+if (x == "5" || x=="10" || x=="15" || x=="20" || x=="25"){
+}else{
+r = document.getElementById(eval(x)+1);
+if(r.className=="lit"){
+r.className = "unlit";
+points++;
+}else{
+r.className = "lit";
+points--;
+}
+}
+
+}
+</script>
+
+<!-- ask why it won't work -->
+<body style= "height:700px";>
+<center>
+<!-- just ignore the werid numbering for the paragraphs -->
+<table id="p01"></table>
+
+<p id="commences">
+<br><br><br><br><br>
+<input type="button" id="Commence" value="Have Fun!" onClick="appear()">
+</p>
+<p id="p01"></p>
+<p id="p05"></p>
+<p id="p04"></p>
+<p id="p03"></p>
+<input type="text" id="name" class="winner" value="Type Your Name Here">
+<input type= "button" id="addsLeaders" class="winner" value="Add to Leaderboard" onClick="addToLB()" >
+<table id="leaderBoard" class="winner" border="1"><th>Name</th><th>Moves Used</th></table>
+<input id="StartAgain" value="Restart" type="button" onClick="Restart()">
+
+</center>
+</body>
